@@ -1,0 +1,138 @@
+{
+  "today": "2026-11-18",
+  "incomeSources": [
+    {
+      "name": "Salary",
+      "amount": 2000.00,
+      "cadence": "biweekly"
+    },
+    {
+      "name": "Freelance",
+      "amount": 600.00,
+      "cadence": "monthly"
+    }
+  ],
+  "spentThisMonth": 2950.00,
+  "bills": [
+    {
+      "name": "Rent",
+      "amount": 1500.00,
+      "cadence": "monthly",
+      "lastCharged": "2026-11-01"
+    },
+    {
+      "name": "Phone",
+      "amount": 45.00,
+      "cadence": "monthly",
+      "lastCharged": "2026-10-25"
+    },
+    {
+      "name": "Gym",
+      "amount": 12.00,
+      "cadence": "weekly",
+      "lastCharged": "2026-11-13"
+    },
+    {
+      "name": "Internet",
+      "amount": 60.00,
+      "cadence": "monthly",
+      "lastCharged": "2026-10-10"
+    },
+    {
+      "name": "Car insurance",
+      "amount": 1200.00,
+      "cadence": "annually",
+      "lastCharged": "2025-11-30"
+    },
+    {
+      "name": "Car loan",
+      "amount": 250.00,
+      "cadence": "monthly",
+      "lastCharged": "2026-10-31"
+    },
+    {
+      "name": "Music app",
+      "amount": 10.00,
+      "cadence": "biweekly",
+      "lastCharged": "2026-11-10"
+    }
+  ],
+  "ownAccounts": [
+    "My Savings",
+    "My Visa Card"
+  ],
+  "transactions": [
+    {
+      "id": "T1",
+      "date": "2026-11-02",
+      "description": "Grocery Mart",
+      "category": "Groceries",
+      "amount": 82.40,
+      "status": "posted",
+      "toAccount": null
+    },
+    {
+      "id": "T2",
+      "date": "2026-11-03",
+      "description": "Acme Corp payroll",
+      "category": "Income",
+      "amount": -2000.00,
+      "status": "posted",
+      "toAccount": null
+    },
+    {
+      "id": "T3",
+      "date": "2026-11-05",
+      "description": "Transfer to savings",
+      "category": "Transfer",
+      "amount": 300.00,
+      "status": "posted",
+      "toAccount": "My Savings"
+    },
+    {
+      "id": "T4",
+      "date": "2026-11-06",
+      "description": "Grocery Mart return",
+      "category": "Groceries",
+      "amount": -12.40,
+      "status": "posted",
+      "toAccount": null
+    },
+    {
+      "id": "T5",
+      "date": "2026-11-08",
+      "description": "Overdraft fee",
+      "category": "Bank Fees",
+      "amount": 35.00,
+      "status": "posted",
+      "toAccount": null
+    },
+    {
+      "id": "T6",
+      "date": "2026-11-09",
+      "description": "Visa card payment",
+      "category": "Credit Card Payment",
+      "amount": 450.00,
+      "status": "posted",
+      "toAccount": "My Visa Card"
+    },
+    {
+      "id": "T7",
+      "date": "2026-11-10",
+      "description": "Pizza Place",
+      "category": "Dining",
+      "amount": 28.75,
+      "status": "pending",
+      "toAccount": null
+    },
+    {
+      "id": "T8",
+      "date": "2026-11-12",
+      "description": "Payment to Alex",
+      "category": "Transfer",
+      "amount": 60.00,
+      "status": "posted",
+      "toAccount": "Alex"
+    }
+  ]
+}

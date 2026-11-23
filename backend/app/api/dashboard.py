@@ -30,7 +30,7 @@ def health():
 
 @router.get("/safe-to-spend", response_model=SafeToSpendResponse)
 def safe_to_spend(
-    reference_date: date | None = Query(None, description="Optional reference date (defaults to 2026-11-18)"),
+    reference_date: date | None = Query(None, description="Optional reference date (defaults to current date)"),
     repo: JsonRepository = Depends(get_repo),
 ):
     ref_date = settings.get_reference_date(reference_date)
@@ -43,7 +43,7 @@ def safe_to_spend(
 
 @router.get("/dashboard", response_model=DashboardResponse)
 def dashboard(
-    reference_date: date | None = Query(None, description="Optional reference date (defaults to 2026-11-18)"),
+    reference_date: date | None = Query(None, description="Optional reference date (defaults to current date)"),
     repo: JsonRepository = Depends(get_repo),
 ):
     ref_date = settings.get_reference_date(reference_date)

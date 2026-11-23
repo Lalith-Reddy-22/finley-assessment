@@ -18,8 +18,13 @@ class JsonRepository:
 
     def get_today(self) -> date:
         data = self._load()
-        today_str = data.get("today", "2026-11-18")
-        return date.fromisoformat(today_str)
+        today_str = data.get("today")
+        if today_str:
+            try:
+                return date.fromisoformat(today_str)
+            except ValueError:
+                pass
+        return date.today()
 
     def get_income_sources(self) -> list[dict]:
         data = self._load()

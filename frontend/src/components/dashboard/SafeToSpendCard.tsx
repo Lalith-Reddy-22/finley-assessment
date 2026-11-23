@@ -17,7 +17,7 @@ export const SafeToSpendCard: React.FC<SafeToSpendCardProps> = ({
   loading,
   error,
   onRetry,
-  monthName = 'November',
+  monthName = 'this month',
 }) => {
   if (loading) {
     return (

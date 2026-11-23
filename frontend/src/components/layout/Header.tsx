@@ -7,23 +7,25 @@ interface HeaderProps {
   currentDate?: string;
 }
 
+function formatToday(currentDate?: string): string {
+  try {
+    const d = currentDate ? new Date(currentDate + 'T00:00:00') : new Date();
+    const weekday = d.toLocaleDateString('en-US', { weekday: 'short' });
+    const day = d.getDate();
+    const month = d.toLocaleDateString('en-US', { month: 'short' });
+    const year = d.getFullYear();
+    return `Today · ${weekday}, ${day} ${month} ${year}`;
+  } catch {
+    return 'Today';
+  }
+}
+
 export const Header: React.FC<HeaderProps> = ({
   onRefresh,
   isRefreshing = false,
-  currentDate = '2026-11-18',
+  currentDate,
 }) => {
-  const formattedDate = (() => {
-    try {
-      const d = new Date(currentDate + 'T00:00:00');
-      const weekday = d.toLocaleDateString('en-US', { weekday: 'short' });
-      const day = d.getDate();
-      const month = d.toLocaleDateString('en-US', { month: 'short' });
-      const year = d.getFullYear();
-      return `Today · ${weekday}, ${day} ${month} ${year}`;
-    } catch {
-      return 'Today · Wed, 18 Nov 2026';
-    }
-  })();
+  const formattedDate = formatToday(currentDate);
 
   return (
     <header className="bg-white border-b border-slate-200/70 sticky top-0 z-30">

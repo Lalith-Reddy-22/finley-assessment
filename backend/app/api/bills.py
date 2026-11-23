@@ -16,7 +16,7 @@ def get_repo() -> JsonRepository:
 
 @router.get("/bills/upcoming", response_model=UpcomingBillsResponse)
 def upcoming_bills(
-    reference_date: date | None = Query(None, description="Optional reference date (defaults to 2026-11-18)"),
+    reference_date: date | None = Query(None, description="Optional reference date (defaults to current date)"),
     repo: JsonRepository = Depends(get_repo),
 ):
     bills = repo.get_bills()

@@ -6,6 +6,14 @@ import { SafeToSpendCard } from '../components/dashboard/SafeToSpendCard';
 import { UpcomingBillsCard } from '../components/dashboard/UpcomingBillsCard';
 import { TransactionsCard } from '../components/dashboard/TransactionsCard';
 
+function getCurrentMonth(): string {
+  try {
+    return new Date().toLocaleDateString('en-US', { month: 'long' });
+  } catch {
+    return 'this month';
+  }
+}
+
 export const Dashboard: React.FC = () => {
   const {
     safeToSpend,
@@ -22,12 +30,13 @@ export const Dashboard: React.FC = () => {
     retryTransactions,
   } = useDashboard();
 
+  const currentMonth = getCurrentMonth();
+
   return (
     <>
       <Header
         onRefresh={refreshAll}
         isRefreshing={isRefreshing}
-        currentDate="2026-11-18"
       />
       <DashboardLayout>
         {/* Top Section: Safe to Spend + Upcoming Bills Grid */}
@@ -37,6 +46,7 @@ export const Dashboard: React.FC = () => {
             loading={loading.safeToSpend}
             error={errors.safeToSpend}
             onRetry={retrySafeToSpend}
+            monthName={currentMonth}
           />
 
           <UpcomingBillsCard

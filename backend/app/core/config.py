@@ -22,11 +22,8 @@ class Settings:
                 return date.fromisoformat(env_val)
             except ValueError:
                 pass
-        try:
-            from app.repositories.json_repository import JsonRepository
-            return JsonRepository().get_today()
-        except Exception:
-            return date(2026, 11, 18)
+        # Default to current date
+        return date.today()
 
 
 settings = Settings()

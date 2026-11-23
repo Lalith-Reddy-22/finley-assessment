@@ -39,10 +39,6 @@ export const Dashboard: React.FC = () => {
     setDateMode((prev) => (prev === 'current' ? 'pdf' : 'current'));
   };
 
-  const handleSelectDateMode = (mode: DateMode) => {
-    setDateMode(mode);
-  };
-
   return (
     <>
       <Header
@@ -50,7 +46,6 @@ export const Dashboard: React.FC = () => {
         isRefreshing={isRefreshing}
         dateMode={dateMode}
         onToggleDateMode={handleToggleDateMode}
-        onSelectDateMode={handleSelectDateMode}
       />
       <DashboardLayout>
         {/* Top Section: Safe to Spend + Upcoming Bills Grid */}

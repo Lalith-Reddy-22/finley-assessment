@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDashboard } from '../hooks/useDashboard';
-import { Header } from '../components/layout/Header';
+import { Header, type DateMode } from '../components/layout/Header';
 import { DashboardLayout } from '../components/layout/DashboardLayout';
 import { SafeToSpendCard } from '../components/dashboard/SafeToSpendCard';
 import { UpcomingBillsCard } from '../components/dashboard/UpcomingBillsCard';
@@ -15,6 +15,9 @@ function getCurrentMonth(): string {
 }
 
 export const Dashboard: React.FC = () => {
+  const [dateMode, setDateMode] = useState<DateMode>('current');
+  const activeReferenceDate = dateMode === 'pdf' ? '2026-11-18' : undefined;
+
   const {
     safeToSpend,
     upcomingBills,
@@ -28,15 +31,26 @@ export const Dashboard: React.FC = () => {
     retrySafeToSpend,
     retryBills,
     retryTransactions,
-  } = useDashboard();
+  } = useDashboard(activeReferenceDate);
 
-  const currentMonth = getCurrentMonth();
+  const currentMonth = dateMode === 'pdf' ? 'November' : getCurrentMonth();
+
+  const handleToggleDateMode = () => {
+    setDateMode((prev) => (prev === 'current' ? 'pdf' : 'current'));
+  };
+
+  const handleSelectDateMode = (mode: DateMode) => {
+    setDateMode(mode);
+  };
 
   return (
     <>
       <Header
         onRefresh={refreshAll}
         isRefreshing={isRefreshing}
+        dateMode={dateMode}
+        onToggleDateMode={handleToggleDateMode}
+        onSelectDateMode={handleSelectDateMode}
       />
       <DashboardLayout>
         {/* Top Section: Safe to Spend + Upcoming Bills Grid */}

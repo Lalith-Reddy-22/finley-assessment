@@ -85,29 +85,32 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Info "i" Logo with Rich Hover Tooltip */}
           <div
-            className="relative flex items-center cursor-help"
+            className="relative flex items-center cursor-help group"
             onMouseEnter={() => setShowTooltip(true)}
             onMouseLeave={() => setShowTooltip(false)}
             onClick={() => setShowTooltip((prev) => !prev)}
             aria-label="Date reference information"
           >
-            <div className="w-4 h-4 rounded-full bg-slate-100 hover:bg-teal-50 border border-slate-200 hover:border-teal-300 flex items-center justify-center transition-colors">
-              <Info className="w-2.5 h-2.5 text-slate-500 hover:text-teal-700" />
+            <div className="w-4 h-4 rounded-full bg-slate-100 group-hover:bg-[#f0fdf9] border border-slate-200 group-hover:border-teal-200 flex items-center justify-center transition-colors">
+              <Info className="w-2.5 h-2.5 text-slate-500 group-hover:text-[#0f766e] transition-colors" />
             </div>
 
-            {/* Hover Tooltip Popover */}
+            {/* Hover Tooltip Popover matching theme */}
             {showTooltip && (
               <div
-                className="absolute right-0 top-full mt-2 w-76 p-3.5 bg-slate-900/95 backdrop-blur-md text-white rounded-xl shadow-2xl z-50 border border-slate-700 text-left cursor-default animate-in fade-in zoom-in-95 duration-150"
+                className="absolute right-0 top-full mt-2 w-80 p-4 bg-white text-slate-800 rounded-2xl shadow-xl shadow-slate-900/10 z-50 border border-slate-200 text-left cursor-default animate-in fade-in zoom-in-95 duration-150"
                 onClick={(e) => e.stopPropagation()}
               >
-                <div className="flex items-center gap-2 border-b border-slate-700/80 pb-2 mb-2.5">
-                  <Info className="w-4 h-4 text-teal-400 shrink-0" />
+                {/* Header */}
+                <div className="flex items-center gap-2 border-b border-slate-100 pb-2.5 mb-3">
+                  <div className="w-6 h-6 rounded-lg bg-[#f0fdf9] border border-teal-100 flex items-center justify-center shrink-0">
+                    <Info className="w-3.5 h-3.5 text-[#0f766e]" />
+                  </div>
                   <div>
-                    <h4 className="font-semibold text-xs text-slate-100">
+                    <h4 className="font-bold text-xs text-slate-900 tracking-tight">
                       {dateMode === 'current' ? 'Current Date (Live)' : 'Date Mentioned in PDF'}
                     </h4>
-                    <p className="text-[10px] text-slate-400">
+                    <p className="text-[10px] text-slate-500 font-normal">
                       {dateMode === 'current'
                         ? "Active: Today's calendar date"
                         : 'Active: Benchmark from PDF spec (18 Nov 2026)'}
@@ -115,30 +118,55 @@ export const Header: React.FC<HeaderProps> = ({
                   </div>
                 </div>
 
-                <div className="space-y-2 text-xs">
+                {/* Body Content */}
+                <div className="space-y-2.5 text-xs">
                   {dateMode === 'current' ? (
-                    <div className="p-2 rounded-lg bg-teal-950/70 border border-teal-500/50 text-teal-100">
-                      <p className="text-[11px] leading-snug">
-                        Currently showing <strong>Current Date</strong>. Discretionary spending, remaining days, and upcoming bills are dynamically calculated for today.
+                    <div className="p-3 rounded-xl bg-[#f0fdf9] border border-teal-100 text-slate-800">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="font-semibold text-xs text-[#0f766e] flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                          Live System Date
+                        </span>
+                        <span className="text-[9px] font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-1.5 py-0.5 rounded">
+                          Active
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-slate-600 leading-relaxed">
+                        Discretionary spending, remaining days, and upcoming bills are dynamically calculated using today&apos;s live calendar date.
                       </p>
-                      <p className="text-[10px] text-teal-300/80 mt-1.5 flex items-center gap-1">
+                      <div className="mt-2 pt-2 border-t border-teal-100/60 flex items-center gap-1 text-[10px] text-[#0f766e] font-medium">
                         <span>Click the reverse switch</span>
-                        <ArrowLeftRight className="w-2.5 h-2.5 inline" />
-                        <span>to switch to date mentioned in PDF.</span>
-                      </p>
+                        <ArrowLeftRight className="w-3 h-3 inline text-[#0f766e]" />
+                        <span>to view PDF date (18 Nov).</span>
+                      </div>
                     </div>
                   ) : (
-                    <div className="p-2 rounded-lg bg-amber-950/70 border border-amber-500/50 text-amber-100">
-                      <p className="text-[11px] leading-snug">
-                        Currently showing <strong>Date Mentioned in PDF (18 Nov 2026)</strong>. Matches sample calculation and figures ($454.33 Safe to Spend, 13 days left).
+                    <div className="p-3 rounded-xl bg-[#fffbeb] border border-amber-200/70 text-slate-800">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="font-semibold text-xs text-[#b45309] flex items-center gap-1.5">
+                          <span className="w-2 h-2 rounded-full bg-amber-500" />
+                          PDF Specification Benchmark
+                        </span>
+                        <span className="text-[9px] font-bold uppercase tracking-wider bg-amber-100 text-amber-800 px-1.5 py-0.5 rounded">
+                          Active
+                        </span>
+                      </div>
+                      <p className="text-[11px] text-slate-600 leading-relaxed">
+                        Matches the sample figures from the assignment PDF ($454.33 Safe to Spend, 13 days remaining) for exact prompt verification.
                       </p>
-                      <p className="text-[10px] text-amber-300/80 mt-1.5 flex items-center gap-1">
+                      <div className="mt-2 pt-2 border-t border-amber-200/60 flex items-center gap-1 text-[10px] text-[#b45309] font-medium">
                         <span>Click the reverse switch</span>
-                        <ArrowLeftRight className="w-2.5 h-2.5 inline" />
-                        <span>to switch to current date.</span>
-                      </p>
+                        <ArrowLeftRight className="w-3 h-3 inline text-[#b45309]" />
+                        <span>to switch to live current date.</span>
+                      </div>
                     </div>
                   )}
+                </div>
+
+                {/* Footer */}
+                <div className="mt-3 pt-2 border-t border-slate-100 flex items-center justify-between text-[10px] text-slate-400">
+                  <span>Finley Calculation Engine</span>
+                  <span className="font-medium text-[#0f766e]">Auto-synced</span>
                 </div>
               </div>
             )}
